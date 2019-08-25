@@ -1,0 +1,8 @@
+---
+
+- name: test
+  ext_id: test/test
+  template_id:
+  subject: Welcome to Chainstack
+  html_template: test.html
+  version_id:
