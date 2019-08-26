@@ -32,10 +32,9 @@ def process_response(resp: Response) -> dict:
 def processor(inventory_data: list, api_key: str, template_prefix=None) -> None:
     """Run templates sync."""
     sg = sendgrid.SendGridAPIClient(api_key=api_key)
+    template_prefix = f'[{template_prefix}] ' if template_prefix else ''
 
     for template in inventory_data:
-        if template_prefix:
-            template_prefix = f'[{template_prefix}] '
         template_name = f'{template_prefix}{template["name"]}'
 
         try:
