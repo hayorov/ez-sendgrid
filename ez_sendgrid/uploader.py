@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 def template_resolver(template_file: str) -> str:
     """Resolve template path into context."""
-    with open(pathlib.Path(template_file)) as file:
+    with open(pathlib.Path(template_file).resolve()) as file:
         return file.read()
 
 
@@ -47,7 +47,7 @@ def processor(inventory_data: list, api_key: str, template_prefix=None) -> None:
                 'html_content': template_resolver(template['html_template']),
             }
 
-            if not template['template_id']:
+            if not template.get('template_id'):
                 r = sg.client.templates.post(request_body={'name': template_name,
                                                            'generation': template.get('generation', 'dynamic')})
                 template_id = process_response(r)['id']
@@ -55,7 +55,7 @@ def processor(inventory_data: list, api_key: str, template_prefix=None) -> None:
                 template.update({'template_id': template_id})
                 data.update({'template_id': template_id})
 
-            if not template['version_id']:
+            if not template.get('version_id'):
                 logger.debug(data)
                 data.update({'name': datetime.datetime.now().isoformat()})
                 r = sg.client.templates._(template['template_id']).versions.post(request_body=data)
@@ -75,7 +75,7 @@ def inventory_map(inventory_data: list) -> dict:
     """Generate inventory map."""
     external_map = {}
     for template in inventory_data:
-        external_map.update({template['ext_id'] if template['ext_id'] else template['name']: template['template_id']})
+        external_map.update({template['ext_id'] if template.get('ext_id') else template['name']: template.get('template_id')})
 
     logger.debug('Mapping %s', pprint.pformat(external_map))
     return pprint.pprint(external_map)

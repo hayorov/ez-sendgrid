@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ez-sendgrid"
-version = "1.0.0"
+version = "1.0.1"
 description = "Manage your SendGrid templates easy."
 authors = ["Alex Khaerov <i@hayorov.ru>"]
 

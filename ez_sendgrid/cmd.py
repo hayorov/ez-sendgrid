@@ -1,4 +1,5 @@
 import logging
+import os
 import pathlib
 import sys
 
@@ -31,6 +32,8 @@ class Util(object):
 
         with open(inventory.resolve(), 'r') as stream:
             inventory_data = yaml.safe_load(stream)
+
+        os.chdir(os.path.dirname(inventory.resolve()))
 
         return processor(inventory_data, api_key, template_prefix)
 
