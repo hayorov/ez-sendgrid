@@ -1,6 +1,11 @@
 # 🛋 EZ [SendGrid](https://sendgrid.com)
 _Manage your SendGrid templates easy. CI/CD friendly!_
 
+![GitHub last commit](https://img.shields.io/github/last-commit/hayorov/ez-sendgrid)
+![PyPI](https://img.shields.io/pypi/v/ez-sendgrid)
+![GitHub issues](https://img.shields.io/github/issues/hayorov/ez-sendgrid)
+
+
 ### Describe your SendGrid templates `inventory.yml` file
 
 ```yaml
@@ -22,6 +27,12 @@ _Manage your SendGrid templates easy. CI/CD friendly!_
                    hayorov/ez-sendgrid \
                    sync --inventory=/prj/inventory.yml \
                         --api_key=SG.XXX
+```
+
+### So classic
+
+```
+   => pip install ez-sendgrid
 ```
 
 ### `.env` file way
