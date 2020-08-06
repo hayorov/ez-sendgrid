@@ -6,3 +6,4 @@
   subject: Welcome to Chainstack
   html_template: test.html
   version_id:
+  keep: 5  # keep 5 most recent versions of template including active one
